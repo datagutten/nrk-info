@@ -3,7 +3,7 @@
 namespace datagutten\nrk\elements;
 
 use datagutten\nrk\exceptions;
-use datagutten\nrk\utils;
+use datagutten\nrk\Utils;
 use datagutten\video_tools\EpisodeFormat;
 use DateInterval;
 use DateTimeImmutable;
@@ -61,14 +61,14 @@ class Program
         }
 
         if (!empty($program['firstTimeTransmitted']))
-            $obj->firstAired = utils::parse_date($program['firstTimeTransmitted']['actualTransmissionDate']);
+            $obj->firstAired = Utils::parse_date($program['firstTimeTransmitted']['actualTransmissionDate']);
         if (!empty($program['category']))
             $obj->category = $program['category']['displayValue'];
         if (!empty($program['releaseDateOnDemand']))
             $obj->releaseDateOnDemand = new DateTimeImmutable($program['releaseDateOnDemand']);
 
-        $obj->availableFrom = utils::parse_date($program['usageRights']['availableFrom']);
-        $obj->availableTo = utils::parse_date($program['usageRights']['availableTo']);
+        $obj->availableFrom = Utils::parse_date($program['usageRights']['availableFrom']);
+        $obj->availableTo = Utils::parse_date($program['usageRights']['availableTo']);
         $obj->availability = $program['availability']['status'];
 
         //$obj->productionYear = $program['productionYear'];
