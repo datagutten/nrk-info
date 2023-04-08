@@ -1,0 +1,28 @@
+{
+  "name": "datagutten/nrk-info",
+  "description": "Tools to fetch and manage information from NRK",
+  "type": "project",
+  "require": {
+    "datagutten/video-tools": "^2.7",
+    "rmccue/requests": "^2.0",
+    "symfony/filesystem": "^6.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9|^10"
+  },
+  "license": "GPL-3.0-or-later",
+  "autoload": {
+    "psr-4": {
+      "datagutten\\nrk\\": "src/"
+    },
+    "files": [
+      "load_config.php"
+    ]
+  },
+  "authors": [
+    {
+      "name": "datagutten",
+      "email": "datagutten@datagutten.net"
+    }
+  ]
+}
