@@ -72,7 +72,7 @@ class Series
     public function firstEpisodeYear()
     {
         $episode = $this->firstEpisode();
-        return $episode['productionYear'];
+        return $episode->productionYear;
     }
 
     public function save(): void
@@ -92,17 +92,17 @@ class Series
         return $this->series['_links']['seasons'][0];
     }
 
-    public function title()
+    public function title(): string
     {
         return $this->series[$this->seriesType]['titles']['title'];
     }
 
-    public function subTitle()
+    public function subTitle(): string
     {
         return $this->series[$this->seriesType]['titles']['subtitle'];
     }
 
-    public function str()
+    public function str(): string
     {
         return sprintf('%s: %s (%s)', $this->title(), $this->categories()['name'], $this->firstEpisodeYear());
     }
