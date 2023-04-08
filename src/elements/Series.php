@@ -2,7 +2,7 @@
 
 namespace datagutten\nrk\elements;
 
-use datagutten\nrk\exceptions\NRKexception;
+use datagutten\nrk\exceptions\NRKException;
 use datagutten\nrk\PSAPI;
 use datagutten\nrk\SeriesInfo;
 use RuntimeException;
@@ -31,7 +31,7 @@ class Series
     /**
      * @param $season_num
      * @return mixed
-     * @throws NRKexception Error fetching data
+     * @throws NRKException Error fetching data
      */
     public function episodes($season_num = null)
     {
@@ -57,7 +57,7 @@ class Series
 
     /**
      * @return
-     * @throws NRKexception
+     * @throws NRKException
      */
     public function firstEpisode(): Episode
     {
@@ -67,7 +67,7 @@ class Series
 
     /**
      * @return int
-     * @throws NRKexception
+     * @throws NRKException
      */
     public function firstEpisodeYear()
     {

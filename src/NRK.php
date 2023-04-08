@@ -27,7 +27,7 @@ class NRK
         {
             $series = $this->psapi->series($slug);
         }
-        catch (exceptions\NRKexception $e)
+        catch (exceptions\NRKException $e)
         {
             $e->setMessage('Unable to get series information: ' . $e->getMessage());
             throw $e;
@@ -39,7 +39,7 @@ class NRK
      * Get program
      * @param string $url
      * @return Program Program object
-     * @throws exceptions\NRKexception
+     * @throws exceptions\NRKException
      */
     public function program(string $url): Program
     {

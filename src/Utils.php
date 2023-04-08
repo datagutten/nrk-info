@@ -50,7 +50,7 @@ class Utils
      *
      * @param string $url URL
      * @return string ID
-     * @throws NRKexception
+     * @throws NRKException
      */
     public static function get_id(string $url): string
     {
@@ -62,7 +62,7 @@ class Utils
             if (!empty($matches))
                 return $matches[1];
             else
-                throw new NRKexception('Unable to find ID');
+                throw new NRKException('Unable to find ID');
         } else
             return $result[1];
     }

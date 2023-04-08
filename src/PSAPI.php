@@ -2,7 +2,7 @@
 
 namespace datagutten\nrk;
 
-use datagutten\nrk\exceptions\NRKexception;
+use datagutten\nrk\exceptions\NRKException;
 use DateInterval;
 use InvalidArgumentException;
 use WpOrg\Requests;
@@ -37,7 +37,7 @@ class PSAPI
         }
         catch (Requests\Exception $e)
         {
-            throw new NRKexception($e->getMessage(), $e->getCode(), $e);
+            throw new NRKException($e->getMessage(), $e->getCode(), $e);
         }
     }
 
@@ -45,7 +45,7 @@ class PSAPI
      * Do an HTTP GET request and return decoded JSON data
      * @param string $url
      * @return array
-     * @throws NRKexception Error fetching data
+     * @throws NRKException Error fetching data
      */
     public function get_json(string $url): array
     {
@@ -55,7 +55,7 @@ class PSAPI
         }
         catch (Requests\Exception $e)
         {
-            throw new NRKexception($e->getMessage(), $e->getCode(), $e);
+            throw new NRKException($e->getMessage(), $e->getCode(), $e);
         }
     }
 
@@ -72,14 +72,14 @@ class PSAPI
         if (!empty($matches[1]))
             return $matches[1];
         else
-            throw new NRKexception('Unable to get api key');
+            throw new NRKException('Unable to get api key');
     }
 
     /**
      * Get playback manifest
      * @param string $id Program ID
      * @return array Program manifest
-     * @throws NRKexception Error fetching data
+     * @throws NRKException Error fetching data
      */
     public function manifest(string $id, $eea_portability = false): array
     {
@@ -87,7 +87,7 @@ class PSAPI
         {
             return $this->get_json(sprintf('/playback/manifest/program/%s%s', $id, $eea_portability ? '?eea-portability=true' : ''));
         }
-        catch (NRKexception $e)
+        catch (NRKException $e)
         {
             $e->setMessage(sprintf('Unable to get manifest for %s', $id));
             throw $e;
@@ -98,7 +98,7 @@ class PSAPI
      * Get playback metadata
      * @param $id
      * @return array
-     * @throws NRKexception Error fetching data
+     * @throws NRKException Error fetching data
      */
     function playback_metadata($id): array
     {
@@ -109,7 +109,7 @@ class PSAPI
      * Get info about a program
      * @param $id
      * @return array
-     * @throws NRKexception Error fetching data
+     * @throws NRKException Error fetching data
      */
     function program_info($id): array
     {
@@ -120,7 +120,7 @@ class PSAPI
      * @param string $series_id
      * @param ?string $season season id
      * @return array
-     * @throws NRKexception Error fetching data
+     * @throws NRKException Error fetching data
      */
     public function series(string $series_id, string $season = null): array
     {
@@ -135,7 +135,7 @@ class PSAPI
      * Get program recommendations
      * @param string $id Program id
      * @return array
-     * @throws NRKexception
+     * @throws NRKException
      */
     public function recommendations(string $id): array
     {
@@ -146,7 +146,7 @@ class PSAPI
      * Get index points (chapters)
      * @param array $manifest Playback manifest
      * @return array Index points in a format to be passed to video_tools
-     * @throws NRKexception Metadata download failed
+     * @throws NRKException Metadata download failed
      * @see \datagutten\video_tools\video::mkvmerge_chapters
      */
     public function get_chapters(array $manifest): array
